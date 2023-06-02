@@ -17,9 +17,34 @@ function initCalculatorHandler() {
         let firstNum = document.querySelector('#first-num').value;
         let secondNum = document.querySelector('#second-num').value;
         let operator = document.querySelector('#operator').value;
-        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        // step3: try/ catch/ finally
+        try {
+            // step4: check number digit
+            if (hasMoreThanTwoDigits(firstNum) || hasMoreThanTwoDigits(firstNum)) {
+                throw new Error("number has more than 2 digits!")
+            }
+
+            // work successfully
+            output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+            console.log("evaluation success!")
+        }
+        catch(err) {
+            console.log(`evaluation fail: ${err.message}`);
+            output.innerHTML = "";
+        }
+        finally {
+            console.log("evaluation end");
+        }
     });
 }
+
+// step4
+// use regular expressions to check 
+// if a number(string) has more than 3 digits -> true
+function hasMoreThanTwoDigits(numberString) {
+    return /^\-?\d{3,}$/.test(numberString);
+  }
+  
 
 function initButtonHandler() {
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -107,12 +132,14 @@ function initButtonHandler() {
         notDefinedFunction();
     };
     
+    // store all function in a list
     const buttonFunction = [consoleLog, consoleError, consoleCount, 
                        consoleWarn, consoleAssert, consoleClear, 
                        consoleDir, consoleDirXml, consoleGroupStart,
                        consoleGroupEnd, consoleTable, startTimeer,
                        endTimer, consoleTrace, triggerGlobalError];
     
+    // add eventListener for every button
     for (let i in buttonFunction) {
         let button = errorBtns[i];
         button.addEventListener("click", buttonFunction[i])

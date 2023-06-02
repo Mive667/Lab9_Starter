@@ -47,6 +47,15 @@
       padding: 8px 2px;
       width: 122px;
     }
+
+    #prompt {
+        color: #000000; /* Sets the text color to dark gray */
+        font-size: 20px; /* Sets the font size to 18 pixels */
+        font-family: Arial, sans-serif; /* Sets the font family to Arial or a fallback sans-serif font */
+        background-color: #fffd78; /* Sets the background color to light gray */
+        border: 1px solid #ccc; /* Adds a 1-pixel solid border with a color of light gray */
+        border-radius: 4px; /* Adds a border radius of 4 pixels to create rounded corners */
+    }
   </style>
 </head>
 
@@ -55,6 +64,7 @@
     <form>
       <fieldset>
         <legend>Error Calculator</legend>
+        <p id="prompt">Please enter numbers that are no more than 2 digits.</p>
         <input name="first-num" id="first-num" />
         <select name="operator" id="operator">
           <option>+</option>
