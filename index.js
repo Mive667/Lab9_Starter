@@ -21,7 +21,7 @@ function initCalculatorHandler() {
         try {
             // step4: check number digit
             if (hasMoreThanTwoDigits(firstNum) || hasMoreThanTwoDigits(firstNum)) {
-                throw new Error("number has more than 2 digits!")
+                throw new ExceedDigitError("number has more than 2 digits!")
             }
 
             // work successfully
@@ -29,7 +29,7 @@ function initCalculatorHandler() {
             console.log("evaluation success!")
         }
         catch(err) {
-            console.log(`evaluation fail: ${err.message}`);
+            console.log(`evaluation fail:\n${err}`);
             output.innerHTML = "";
         }
         finally {
@@ -39,6 +39,15 @@ function initCalculatorHandler() {
 }
 
 // step4
+// custom Error
+class ExceedDigitError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "ExceedDigitError";
+    }
+}
+
+
 // use regular expressions to check 
 // if a number(string) has more than 3 digits -> true
 function hasMoreThanTwoDigits(numberString) {
