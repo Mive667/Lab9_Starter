@@ -6,6 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="index.js"></script>
+
+  <!-- step5: Install JSTrack Agent -->
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "3f103de63e9c4f9f966b8563b61481fa"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+    // test installation 
+    TrackJS.track('Testing TrackJS!');
+  </script>
+                        
   <title>Lab 9</title>
 
   <style>
@@ -48,7 +60,7 @@
       width: 122px;
     }
 
-    #prompt {
+    #calculator-prompt {
         color: #000000; /* Sets the text color to dark gray */
         font-size: 20px; /* Sets the font size to 18 pixels */
         font-family: Arial, sans-serif; /* Sets the font family to Arial or a fallback sans-serif font */
@@ -64,7 +76,7 @@
     <form>
       <fieldset>
         <legend>Error Calculator</legend>
-        <p id="prompt">Please enter numbers that are no more than 2 digits.</p>
+        <p id="calculator-prompt">Please enter numbers that are no more than 2 digits.</p>
         <input name="first-num" id="first-num" />
         <select name="operator" id="operator">
           <option>+</option>
@@ -76,6 +88,8 @@
         <button id="calculate">Calculate</button>
         <br />
         <output></output>
+        <br/>
+        <input type="button" value="Trigger an Error" onclick="notDefinedFunction();" />
       </fieldset>
     </form>
 

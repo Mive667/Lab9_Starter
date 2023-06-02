@@ -1,5 +1,6 @@
 // index.js
 
+
 // Run the init() function when the page has loaded
 window.addEventListener('DOMContentLoaded', init);
 
@@ -7,8 +8,11 @@ function init() {
     // Add the event listeners to buttons and calculator
     initCalculatorHandler(); 
     initButtonHandler();
+
+    // notDefinedFunction();
 }
 
+// step3
 function initCalculatorHandler() {
     let form = document.querySelector('form');
     form.addEventListener('submit', event => {
@@ -46,15 +50,26 @@ class ExceedDigitError extends Error {
         this.name = "ExceedDigitError";
     }
 }
-
-
+// step4
 // use regular expressions to check 
 // if a number(string) has more than 3 digits -> true
 function hasMoreThanTwoDigits(numberString) {
     return /^\-?\d{3,}$/.test(numberString);
-  }
-  
+}
 
+// step5
+window.onerror = function (msg,url,lineNum,columnNum, err) {
+    txt="There was an error on this page.\n\n";
+    txt+="Error: " + msg + "\n";
+    txt+="URL: " + url + "\n";
+    txt+="Line: " + lineNum + "\n\n";
+    txt+="Column: " + columnNum + "\n\n";
+    txt+="Error object:" + JSON.stringify(err);
+    console.log(txt);
+    return false;
+};
+
+// step2
 function initButtonHandler() {
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     
